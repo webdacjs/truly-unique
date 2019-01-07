@@ -9,8 +9,9 @@ const getTokensMap = (str, opts) => {
 }
 
 const getPhraseUniqueTokens = (phrase, tokensMap, opts) => {
+  const except = opts.exceptions || []
   const phraseTokenized = getTokenizeFn(phrase, opts)
-  const uniqueTokens = phraseTokenized.filter(t => tokensMap.get(t) === 1)
+  const uniqueTokens = phraseTokenized.filter(t => except.includes(t) || tokensMap.get(t) === 1)
   return [phraseTokenized, uniqueTokens]
 }
 
