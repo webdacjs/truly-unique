@@ -1,6 +1,6 @@
 const {tokenize, tokenizeStem} = require('./tokenizestemmer.js')
 
-const getTokenizeFn = (str, opts) => opts.stem ? tokenizeStem(str) : tokenize(str)
+const getTokenizeFn = (str, opts) => opts.stem ? tokenizeStem(str, opts) : tokenize(str, opts)
 
 const getTokensMap = (str, opts) => {
   const tokensMap = new Map()

@@ -1,15 +1,15 @@
 const stemmer = require('stemmer')
 const {stopwords} = require('./stopwordsEn.json')
 
-const filterstopw = (arr, stopflag) =>
-  stopflag ? arr.filter(t => !stopwords.includes(t)) : arr
+const filterstopw = (arr, opts = {}) =>
+  opts.stopwords ? arr.filter(t => !stopwords.includes(t)) : arr
 
-const tokenize = (str, stopflag) => filterstopw(str.split(' ')
+const tokenize = (str, opts) => filterstopw(str.split(' ')
   .filter(t => t.match(/[0-9a-z]/i))
   .map(t => t.toLowerCase())
-  .map(t => t.replace(/[^0-9a-z]/ig, '')), stopflag)
+  .map(t => t.replace(/[^0-9a-z]/ig, '')), opts)
 
-const tokenizeStem = (str, stopflag) => tokenize(str, stopflag).map(t => stemmer(t))
+const tokenizeStem = (str, opts) => tokenize(str, opts).map(t => stemmer(t))
 
 module.exports = {
   tokenize,
