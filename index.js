@@ -1,4 +1,3 @@
-const {tokenize} = require('./tokenizestemmer.js')
 const soa = require('sort-objects-array')
 const {
   getTokensMap,
