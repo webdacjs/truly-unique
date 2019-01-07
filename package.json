@@ -1,0 +1,14 @@
+{
+  "name": "truly-unique",
+  "version": "1.0.0",
+  "description": "Simple utility to get unique / repeated words from strings or phrases",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Juan Convers",
+  "license": "MIT",
+  "dependencies": {
+    "stemmer": "^1.0.3"
+  }
+}
