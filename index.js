@@ -15,13 +15,13 @@ const mostCommonWords = (str, opts = {}) => soa(repeatedWords(str, opts, 0), 'va
 
 const phrasesWithUniqueWords = (arr, opts = {}) => {
   const tokensMap = getTokensMap(arr.join(' '), opts)
-  const filtered = arr.filter(p => checkPhraseUnique(p, tokensMap))
+  const filtered = arr.filter(p => checkPhraseUnique(p, tokensMap, opts))
   return filtered
 }
 
 const phrasesWithRepeatedWords = (arr, opts = {}) => {
   const tokensMap = getTokensMap(arr.join(' '), opts)
-  const filtered = arr.filter(p => checkPhraseRepeated(p, tokensMap))
+  const filtered = arr.filter(p => checkPhraseRepeated(p, tokensMap, opts))
   return filtered
 }
 

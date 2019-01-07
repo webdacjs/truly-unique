@@ -1,6 +1,5 @@
 const {tokenize, tokenizeStem} = require('./tokenizestemmer.js')
 
-
 const getTokenizeFn = (str, opts) => opts.stem ? tokenizeStem(str) : tokenize(str)
 
 const getTokensMap = (str, opts) => {
@@ -9,19 +8,19 @@ const getTokensMap = (str, opts) => {
   return tokensMap
 }
 
-const getPhraseUniqueTokens = (phrase, tokensMap) => {
-  const phraseTokenized = tokenize(phrase)
+const getPhraseUniqueTokens = (phrase, tokensMap, opts) => {
+  const phraseTokenized = getTokenizeFn(phrase, opts)
   const uniqueTokens = phraseTokenized.filter(t => tokensMap.get(t) === 1)
   return [phraseTokenized, uniqueTokens]
 }
 
-const checkPhraseUnique = (phrase, tokensMap) => {
-  const [phraseTokenized, uniqueTokens] = getPhraseUniqueTokens(phrase, tokensMap)
+const checkPhraseUnique = (phrase, tokensMap, opts) => {
+  const [phraseTokenized, uniqueTokens] = getPhraseUniqueTokens(phrase, tokensMap, opts)
   return phraseTokenized.length === uniqueTokens.length
 }
 
-const checkPhraseRepeated = (phrase, tokensMap) => {
-  const [phraseTokenized, uniqueTokens] = getPhraseUniqueTokens(phrase, tokensMap)
+const checkPhraseRepeated = (phrase, tokensMap, opts) => {
+  const [phraseTokenized, uniqueTokens] = getPhraseUniqueTokens(phrase, tokensMap, opts)
   return phraseTokenized.length !== uniqueTokens.length
 }
 
