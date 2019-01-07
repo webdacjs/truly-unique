@@ -9,6 +9,7 @@
   "author": "Juan Convers",
   "license": "MIT",
   "dependencies": {
+    "remove-accents": "^0.4.2",
     "sort-objects-array": "^1.4.1",
     "stemmer": "^1.0.3"
   }

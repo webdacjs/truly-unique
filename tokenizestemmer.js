@@ -1,4 +1,5 @@
 const stemmer = require('stemmer')
+const accents = require('remove-accents')
 const {stopwords} = require('./stopwordsEn.json')
 
 const filterstopw = (arr, opts = {}) =>
@@ -6,7 +7,7 @@ const filterstopw = (arr, opts = {}) =>
 
 const tokenize = (str, opts) => filterstopw(str.split(' ')
   .filter(t => t.match(/[0-9a-z]/i))
-  .map(t => t.toLowerCase())
+  .map(t => accents.remove(t.toLowerCase()))
   .map(t => t.replace(/[^0-9a-z]/ig, '')), opts)
 
 const tokenizeStem = (str, opts) => tokenize(str, opts).map(t => stemmer(t))
