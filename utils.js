@@ -24,6 +24,7 @@ const checkPhraseRepeated = (phrase, tokensMap, opts) => {
   return phraseTokenized.length !== uniqueTokens.length
 }
 
+
 module.exports = {
   getTokensMap,
   getPhraseUniqueTokens,
