@@ -2,7 +2,8 @@ const soa = require('sort-objects-array')
 const {
   getTokensMap,
   checkPhraseUnique,
-  checkPhraseRepeated
+  checkPhraseRepeated,
+  checkArray
 } = require('./utils.js')
 
 const uniqueWords = (str, opts = {}) => Array.from(
@@ -18,14 +19,14 @@ const mostCommonWords = (str, opts = {}) => soa(
   repeatedWords(str, opts), 'value', {order: 'desc'})
 
 const phrasesWithUniqueWords = (arr, opts = {}) => {
-  const tokensMap = getTokensMap(arr.join(' '), opts)
-  const filtered = arr.filter(p => checkPhraseUnique(p, tokensMap, opts))
+  const tokensMap = getTokensMap(checkArray(arr).join(' '), opts)
+  const filtered = checkArray(arr).filter(p => checkPhraseUnique(p, tokensMap, opts))
   return filtered
 }
 
 const phrasesWithRepeatedWords = (arr, opts = {}) => {
-  const tokensMap = getTokensMap(arr.join(' '), opts)
-  const filtered = arr.filter(p => checkPhraseRepeated(p, tokensMap, opts))
+  const tokensMap = getTokensMap(checkArray(arr).join(' '), opts)
+  const filtered = checkArray(arr).filter(p => checkPhraseRepeated(p, tokensMap, opts))
   return filtered
 }
 

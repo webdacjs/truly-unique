@@ -1,5 +1,8 @@
 const {tokenize, tokenizeStem} = require('./tokenizestemmer.js')
 
+const checkArray = arr =>
+  arr.constructor === Array ? arr : arr.split('\n')
+
 const getTokenizeFn = (str, opts) => opts.stem
   ? tokenizeStem(str, opts)
   : tokenize(str, opts)
@@ -32,6 +35,7 @@ const checkPhraseRepeated = (phrase, tokensMap, opts) => {
 }
 
 module.exports = {
+  checkArray,
   getTokensMap,
   getPhraseUniqueTokens,
   checkPhraseUnique,

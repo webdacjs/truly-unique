@@ -78,6 +78,12 @@ test('Testing getting getting phrases with unique words', () => {
   expect(phrasesunique.length).toBe(1)
 })
 
+test('Testing getting getting phrases with unique words if it is a String', () => {
+  const phrasesunique = phrasesWithUniqueWords(mollyMalone.join('\n'))
+  expect(phrasesunique.includes('In Dublin"s fair city,')).toBe(true)
+  expect(phrasesunique.length).toBe(1)
+})
+
 test('Testing getting getting phrases with unique words, using stopwords', () => {
   const phrasesunique = phrasesWithUniqueWords(mollyMalone, {stopwords: true})
   expect(phrasesunique.includes('In Dublin"s fair city,')).toBe(true)
