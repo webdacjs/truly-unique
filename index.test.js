@@ -6,7 +6,6 @@ const {
   phrasesWithRepeatedWords
 } = require('./index.js')
 
-
 const mollyMalone = [
   'In Dublin"s fair city,',
   'Where the girls are so pretty,',
