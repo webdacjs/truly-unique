@@ -9,7 +9,7 @@ The module supports 'stopwords' with the `{stopword: true}` argument so the most
 > const sample = 'In computing, stop words are words which are filtered out before or after processing of natural language data'
 > mostCommonWords(sample)
 [ { key: 'are', value: 2 }, { key: 'words', value: 2 } ]
-> mostCommonWords('In computing, stop words are words which are filtered out before or after processing of natural language data', {stopwords: true})
+> mostCommonWords(sample, {stopwords: true})
 [ { key: 'words', value: 2 } ]
 ```
 
