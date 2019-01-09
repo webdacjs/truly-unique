@@ -2,14 +2,14 @@
 
 This module analyze the text provided and identify unique or repeated words, the most common words in the text, the phrases with unique words across the text or the phrases with repeated words.
 
-The module supports 'stopwords' with the `{stopword: true}` argument so the most common words in English are ignored in the process. Look at the following example:
+The module supports 'stopwords' with the `{stopwords: true}` argument so the most common words in English are ignored in the process. Look at the following example:
 
 ```js
-> const {mostCommonWords} = require('truly-unique')
+> const {mostCommonWordsCount} = require('truly-unique')
 > const sample = 'In computing, stop words are words which are filtered out before or after processing of natural language data'
-> mostCommonWords(sample)
+> mostCommonWordsCount(sample)
 [ { key: 'are', value: 2 }, { key: 'words', value: 2 } ]
-> mostCommonWords(sample, {stopwords: true})
+> mostCommonWordsCount(sample, {stopwords: true})
 [ { key: 'words', value: 2 } ]
 ```
 
@@ -26,8 +26,8 @@ $ npm install --save truly-unique
 ## Usage
 
 The module provides two type of functions:
-* Functions to deal with words: (`uniqueWords`, `repeatedWords` and `mostCommonWords`)
-* Functions to deal with phrases: (`phrasesWithUniqueWords` and `phrasesWithRepeatedWords`)
+* Functions to deal with words: (`uniqueWords`, `repeatedWords` and `mostCommonWordsCount`)
+* Functions to deal with phrases: (`uniquePhrases`, `repeatedPhrases`, `phrasesWithUniqueWords` and `phrasesWithRepeatedWords`)
 
 Maybe the easiest way to understand the module is through and example. Lets get the text of the traditional Irish song [Molly Malone](https://en.wikipedia.org/wiki/Molly_Malone) and lets assign the lyrics to a variable, so we can start to answer questions.
 
@@ -38,16 +38,16 @@ Maybe the easiest way to understand the module is through and example. Lets get 
 So maybe the first question you want to ask is what is the most common word on those lyrics?
 
 ```js
-> const {mostCommonWords} = require('truly-unique')
-> mostCommonWords(malone)
+> const {mostCommonWordsCount} = require('truly-unique')
+> mostCommonWordsCount(malone)
 [ { key: 'alive', value: 10 },
   { key: 'and', value: 8 },
   { key: 'cockles', value: 4 }
   ...
 
 // But if you want to remove the stopwords like 'and'
-> const {mostCommonWords} = require('truly-unique')
-> mostCommonWords(malone, {stopwords: true})
+> const {mostCommonWordsCount} = require('truly-unique')
+> mostCommonWordsCount(malone, {stopwords: true})
 [ { key: 'alive', value: 10 },
   { key: 'cockles', value: 4 },
   { key: 'mussels', value: 4 },
@@ -92,10 +92,10 @@ The next step could be what are the unique phrases?
 ```js
 > const {uniquePhrases} = require('truly-unique')
 > uniquePhrases(malone)
-[ 'in dublins fair city',
-  'where the girls are so pretty',
-  'i first set my eyes on sweet molly malone',
-  'as she wheeled her wheelbarrow',
+[ 'In Dublin\'s fair city,',
+  'Where the girls are so pretty,',
+  'I first set my eyes on sweet Molly Malone,',
+  'As she wheeled her wheel-barrow,',
   ...
 
 ```
@@ -105,9 +105,11 @@ Or repeated phrases as well:
 ```js
 > const {repeatedPhrases} = require('truly-unique')
 > repeatedPhrases(malone)
-[ { key: 'alive alive oh', value: 2 },
-  { key: 'crying cockles and mussels alive alive oh', value: 4 },
-  { key: 'through streets broad and narrow', value: 3 } ]
+[ 'Through streets broad and narrow,',
+  'Crying, "Cockles and mussels, alive, alive, oh!"',
+  '"Alive, alive, oh,',
+  'Alive, alive, oh,"',
+  ...
 
 ```
 
