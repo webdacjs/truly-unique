@@ -1,6 +1,6 @@
 {
   "name": "truly-unique",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "description": "Simple utility to get unique / repeated words from strings or phrases",
   "main": "index.js",
   "scripts": {
