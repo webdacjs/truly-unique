@@ -23,12 +23,22 @@ const getPhraseUniqueTokens = (phrase, tokensMap, opts) => {
 }
 
 const checkPhraseUnique = (phrase, tokensMap, opts) => {
+  const phraseTokenized = getTokenizeFn(phrase.replace(/ /g, '_'), opts)
+  return tokensMap.get(phraseTokenized[0]) === 1
+}
+
+const checkPhraseRepeated = (phrase, tokensMap, opts) => {
+  const phraseTokenized = getTokenizeFn(phrase.replace(/ /g, '_'), opts)
+  return tokensMap.get(phraseTokenized[0]) > 1
+}
+
+const checkPhraseUniqueWords = (phrase, tokensMap, opts) => {
   const [phraseTokenized, uniqueTokens] = getPhraseUniqueTokens(
     phrase, tokensMap, opts)
   return phraseTokenized.length === uniqueTokens.length
 }
 
-const checkPhraseRepeated = (phrase, tokensMap, opts) => {
+const checkPhraseRepeatedWords = (phrase, tokensMap, opts) => {
   const [phraseTokenized, uniqueTokens] = getPhraseUniqueTokens(
     phrase, tokensMap, opts)
   return phraseTokenized.length !== uniqueTokens.length
@@ -37,7 +47,9 @@ const checkPhraseRepeated = (phrase, tokensMap, opts) => {
 module.exports = {
   checkArray,
   getTokensMap,
-  getPhraseUniqueTokens,
+  checkPhraseRepeated,
   checkPhraseUnique,
-  checkPhraseRepeated
+  getPhraseUniqueTokens,
+  checkPhraseUniqueWords,
+  checkPhraseRepeatedWords
 }
