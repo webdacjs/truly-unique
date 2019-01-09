@@ -87,6 +87,30 @@ Now lets say you want to find what words are unique on that text:
 
 ```
 
+The next step could be what are the unique phrases?
+
+```js
+> const {uniquePhrases} = require('truly-unique')
+> uniquePhrases(malone)
+[ 'in dublins fair city',
+  'where the girls are so pretty',
+  'i first set my eyes on sweet molly malone',
+  'as she wheeled her wheelbarrow',
+  ...
+
+```
+
+Or repeated phrases as well:
+
+```js
+> const {repeatedPhrases} = require('truly-unique')
+> repeatedPhrases(malone)
+[ { key: 'alive alive oh', value: 2 },
+  { key: 'crying cockles and mussels alive alive oh', value: 4 },
+  { key: 'through streets broad and narrow', value: 3 } ]
+
+```
+
 And finally let's say you want to find if those lyrics have phrases composed of unique words across the text:
 
 ```js
@@ -107,7 +131,6 @@ And finally let's say you want to find if those lyrics have phrases composed of 
   'And no one could save her,' ]
 >
 ```
-
 
 ### License
 
