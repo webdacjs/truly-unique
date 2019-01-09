@@ -1,7 +1,7 @@
 const {
   uniqueWords,
   repeatedWords,
-  mostCommonWords,
+  mostCommonWordsCount,
   uniquePhrases,
   repeatedPhrases,
   phrasesWithUniqueWords,
@@ -50,41 +50,42 @@ test('Testing getting unique words of the text with stopwords', () => {
 
 test('Testing getting repeated words in the text', () => {
   const repeated = repeatedWords(mollyMalone.join(' '))
-  expect(repeated.filter(x => x.key === 'mussels').length).toBe(1)
-  expect(repeated.filter(x => x.key === 'of').length).toBe(1)
-  expect(repeated.filter(x => x.key === 'ghost').length).toBe(0)
+  expect(repeated.includes('mussels')).toBe(true)
+  expect(repeated.includes('of')).toBe(true)
+  expect(repeated.includes('ghost')).toBe(false)
 })
 
 test('Testing getting repeated words in the text with stopwords', () => {
   const repeated = repeatedWords(mollyMalone.join(' '), {stopwords: true})
-  expect(repeated.filter(x => x.key === 'mussels').length).toBe(1)
-  expect(repeated.filter(x => x.key === 'of').length).toBe(0)
-  expect(repeated.filter(x => x.key === 'ghost').length).toBe(0)
+  expect(repeated.includes('mussels')).toBe(true)
+  expect(repeated.includes('of')).toBe(false)
+  expect(repeated.includes('ghost')).toBe(false)
 })
 
 test('Testing getting most common words in the text', () => {
-  const mostcommon = mostCommonWords(mollyMalone.join(' '))
+  const mostcommon = mostCommonWordsCount(mollyMalone.join(' '))
   expect(mostcommon[0].key).toBe('alive')
   expect(mostcommon[1].key).toBe('and')
 })
 
 test('Testing getting most common words in the text with stopwords', () => {
-  const mostcommon = mostCommonWords(mollyMalone.join(' '), {stopwords: true})
+  const mostcommon = mostCommonWordsCount(mollyMalone.join(' '), {stopwords: true})
   expect(mostcommon[0].key).toBe('alive')
   expect(mostcommon[1].key).toBe('oh')
 })
 
 test('Testing getting unique phrases in the text', () => {
   const phrasesunique = uniquePhrases(mollyMalone)
-  expect(phrasesunique.includes('she was a fishmonger')).toBe(true)
-  expect(phrasesunique.includes('and no one could save her')).toBe(true)
+  expect(phrasesunique.includes('I first set my eyes on sweet Molly Malone,')).toBe(true)
+  expect(phrasesunique.includes('And no one could save her,')).toBe(true)
   expect(phrasesunique.length).toBe(12)
 })
 
 test('Testing getting repeated phrases in the text', () => {
   const repeatedphrases = repeatedPhrases(mollyMalone)
-  expect(repeatedphrases.filter(x => x.key === 'alive alive oh').length).toBe(1)
-  expect(repeatedphrases.filter(x => x.key === 'through streets broad and narrow').length).toBe(1)
+  expect(repeatedphrases.includes('Alive, alive, oh,"')).toBe(true)
+  expect(repeatedphrases.includes('Through streets broad and narrow,')).toBe(true)
+  expect(repeatedphrases.length).toBe(9)
 })
 
 test('Testing getting getting phrases with unique words', () => {
