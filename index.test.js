@@ -2,6 +2,8 @@ const {
   uniqueWords,
   repeatedWords,
   mostCommonWords,
+  uniquePhrases,
+  repeatedPhrases,
   phrasesWithUniqueWords,
   phrasesWithRepeatedWords
 } = require('./index.js')
@@ -70,6 +72,19 @@ test('Testing getting most common words in the text with stopwords', () => {
   const mostcommon = mostCommonWords(mollyMalone.join(' '), {stopwords: true})
   expect(mostcommon[0].key).toBe('alive')
   expect(mostcommon[1].key).toBe('oh')
+})
+
+test('Testing getting unique phrases in the text', () => {
+  const phrasesunique = uniquePhrases(mollyMalone)
+  expect(phrasesunique.includes('she was a fishmonger')).toBe(true)
+  expect(phrasesunique.includes('and no one could save her')).toBe(true)
+  expect(phrasesunique.length).toBe(12)
+})
+
+test('Testing getting repeated phrases in the text', () => {
+  const repeatedphrases = repeatedPhrases(mollyMalone)
+  expect(repeatedphrases.filter(x => x.key === 'alive alive oh').length).toBe(1)
+  expect(repeatedphrases.filter(x => x.key === 'through streets broad and narrow').length).toBe(1)
 })
 
 test('Testing getting getting phrases with unique words', () => {

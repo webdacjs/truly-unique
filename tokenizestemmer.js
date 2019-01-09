@@ -8,9 +8,9 @@ const filterstopw = (arr, opts = {}) =>
 const tokenize = (str, opts) => filterstopw(str
   .replace(/\n|\t/g, ' ')
   .split(' ')
-  .filter(t => t.match(/[0-9a-z]/i))
+  .filter(t => t.match(/[0-9a-z_]/i))
   .map(t => accents.remove(t.toLowerCase()))
-  .map(t => t.replace(/[^0-9a-z]/ig, '')), opts)
+  .map(t => t.replace(/[^0-9a-z_]/ig, '')), opts)
 
 const tokenizeStem = (str, opts) => tokenize(str, opts).map(t => stemmer(t))
 
